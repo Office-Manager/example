@@ -1,0 +1,6 @@
+[localhost]
+127.0.0.1
+
+[supermicros]
+172.16.2.2 dns_master=true
+172.16.2.3 dns_master=false

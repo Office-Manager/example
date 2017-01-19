@@ -1,0 +1,8 @@
+--- # Playbook for installing DNSMASQ and setting the conf files.
+  - hosts: supermicros
+    user: ansible
+    become : yes
+    connection: ssh
+    gather_facts: no
+    roles:
+    - dnsmasq_setup

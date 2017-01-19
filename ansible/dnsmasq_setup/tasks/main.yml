@@ -1,0 +1,28 @@
+---
+# tasks file for dnsmasq_setup
+- name: Install DNSMASQ via yum
+  yum:
+    name: dnsmasq
+    state: present
+- name: Transfer dnsmasq config files to server
+  copy:
+    src: "{{ item }}"
+    dest: /etc/
+    owner: root
+    mode: 0644
+  with_fileglob:
+    - files/*
+- name: Transfer static IP assignments
+  copy:
+    src: "{{ item }}"
+    dest: /etc/dnsmasq.d/
+    owner: root
+    mode: 0644
+  with_fileglob:
+    - dnsmasq.d/*
+- name: Start service checks
+  debug:
+    msg="Empty space."
+  notify:
+    - Restart master DNSMASQ
+    - Force stop slave DNSMASQ

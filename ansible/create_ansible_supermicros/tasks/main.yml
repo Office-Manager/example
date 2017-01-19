@@ -1,0 +1,27 @@
+---
+# tasks file for TEMPLATE
+- name: Create ansible group
+  group:
+    name: ansible
+    state: present
+- name: Create ansible user
+  user:
+    name: ansible
+    group: ansible
+    state: present
+- name: Create file entry for sudoers.d
+  file:
+    path: /etc/sudoers.d/ansible_user
+    state: touch
+- name: Add content for ansible user within sudoers.d
+  copy:
+    content: "ansible ALL=(ALL) NOPASSWD: ALL"
+    dest: "/etc/sudoers.d/ansible_user"
+- name: Set up multiple authorized keys
+  authorized_key:
+    user: ansible
+    state: present
+    key: '{{ item }}'
+  with_file:
+    - files/shane
+    - files/lmello

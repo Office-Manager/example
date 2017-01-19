@@ -1,0 +1,13 @@
+---
+# handlers file for dnsmasq_setup
+
+- name: Restart master DNSMASQ
+  service:
+    name: dnsmasq
+    state: restarted
+  when:  dns_master == "true"
+- name: Force stop slave DNSMASQ
+  service:
+    name: dnsmasq
+    state: stopped
+  when:  dns_master == "false"

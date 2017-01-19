@@ -1,0 +1,3 @@
+# Configures static ip for supermicro3 management 
+# console.
+dhcp-host=0c:c4:7a:22:3f:6b,172.16.2.220

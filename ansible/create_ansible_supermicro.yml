@@ -1,0 +1,12 @@
+--- # Playbook for creating ansible user on supermicro servers
+  - hosts: supermicros
+    user: root
+    become : yes
+    connection: ssh
+    gather_facts: no
+    roles:
+    - create_ansible_supermicros
+
+
+
+
